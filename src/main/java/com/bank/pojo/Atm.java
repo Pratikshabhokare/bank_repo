@@ -4,6 +4,7 @@ public class Atm {
 	
 	private int id;
 	private String bankName;
+	private double balanace;
 	
 	
 
