@@ -23,10 +23,7 @@ public class Atm {
 	public void setBalanace(double balanace) {
 		this.balanace = balanace;
 	}
-	@Override
-	public String toString() {
-		return "Atm [id=" + id + ", bankName=" + bankName + ", balanace=" + balanace + "]";
-	}
+	 
 	
 	
 
