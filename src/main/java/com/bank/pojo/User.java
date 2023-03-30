@@ -9,5 +9,6 @@ public class User {
 	private long mobileNumber;
 	private String password;
 	private String addharNumber;
+	private String panNumber;
 
 }
