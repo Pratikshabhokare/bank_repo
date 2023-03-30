@@ -8,5 +8,6 @@ public class User {
 	private String emailId;
 	private long mobileNumber;
 	private String password;
+	private String addharNumber;
 
 }
