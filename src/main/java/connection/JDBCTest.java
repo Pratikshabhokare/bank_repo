@@ -20,7 +20,7 @@ public class JDBCTest {
 
 		Class.forName(driver);
 
-		System.out.println("Driver loaded...");
+		System.out.println("Driver loaded...");//hello world
 
 	}
 
