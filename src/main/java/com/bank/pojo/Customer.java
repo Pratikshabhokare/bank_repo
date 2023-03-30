@@ -87,5 +87,7 @@ public class Customer {
 				+ ", accountNumber=" + accountNumber + ", custumerCurrentBal=" + customerCurrentBal + ", address="
 				+ address + " ,isCustumerExist=" + isCustomerExist + "]";
 	}
+	
+	//this is first comment in Customer class
 
 }
