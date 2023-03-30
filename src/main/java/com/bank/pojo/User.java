@@ -1,7 +1,7 @@
 package com.bank.pojo;
 
 public class User {
-
+//this i a user class
 	private int id;
 	private String firstName;
 	private String lastName;
@@ -101,6 +101,7 @@ public class User {
 	}
 	
 	//this is first comment in user class
+	
 	
 
 }
