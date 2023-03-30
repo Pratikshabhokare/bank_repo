@@ -11,5 +11,6 @@ public class User {
 	private String addharNumber;
 	private String panNumber;
 	private String drivinglicence;
+	private String passport;
 
 }
