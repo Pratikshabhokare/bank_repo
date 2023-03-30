@@ -1,7 +1,7 @@
 package com.bank.pojo;
 
 public class User {
-	
+
 	private int id;
 	private String firstName;
 	private String lastName;
@@ -10,5 +10,6 @@ public class User {
 	private String password;
 	private String addharNumber;
 	private String panNumber;
+	private String drivinglicence;
 
 }
