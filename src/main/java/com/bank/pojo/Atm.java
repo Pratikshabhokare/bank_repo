@@ -72,6 +72,13 @@ public class Atm {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+	@Override
+	public String toString() {
+		return "Atm [id=" + id + ", bankName=" + bankName + ", balanace=" + balanace + ", pinNumber=" + pinNumber
+				+ ", customerName=" + customerName + ", deposite=" + deposite + ", credit=" + credit
+				+ ", numberOfNotes=" + numberOfNotes + ", contactNumber=" + contactNumber + ", address=" + address
+				+ "]";
+	}
 	
 	
 
