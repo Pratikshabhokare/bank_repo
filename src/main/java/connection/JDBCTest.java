@@ -14,7 +14,7 @@ public class JDBCTest {
 
 	private static String userName = "root";
 
-	private static String password = "2003";
+	private static String password = "2003";//hello world
 
 	public void loadDriver() throws ClassNotFoundException {
 
