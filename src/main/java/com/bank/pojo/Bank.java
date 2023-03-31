@@ -108,7 +108,6 @@ public class Bank {
 				+ customer + ", addressId=" + addressId + ", address=" + address + ", customerlist=" + customerlist
 				+ "]";
 	}
-	//this is first comment in Bank class
-	//this is second comment in Bank class
+	
 
 }

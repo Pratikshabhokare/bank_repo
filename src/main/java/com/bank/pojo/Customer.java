@@ -88,7 +88,6 @@ public class Customer {
 				+ address + " ,isCustumerExist=" + isCustomerExist + "]";
 	}
 	
-	//this is first comment in Customer class
-	//this is second comment in Customer class
+
 
 }
