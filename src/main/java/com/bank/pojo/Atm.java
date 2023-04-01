@@ -1,7 +1,7 @@
 package com.bank.pojo;
 
 public class Atm {
-
+ //this is a atm class
 	private int id;
 	private String bankName;
 	private double balanace;
