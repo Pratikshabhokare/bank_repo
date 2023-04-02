@@ -7,7 +7,7 @@ public class Customer {
 	private String customerFirstName;
 	private String customerLastName;
 	private int accountNumber;
-	private double customerCurrentBal;
+	private int customerCurrentBal;
 	private int mobileNumber;
 	private Address address;
 	public String getCustomerCurrentBal;
@@ -49,10 +49,10 @@ public class Customer {
 	public void setAccountNumber(int accountNumber) {
 		this.accountNumber = accountNumber;
 	}
-	public double getCustomerCurrentBal() {
+	public int getCustomerCurrentBal() {
 		return customerCurrentBal;
 	}
-	public void setCustomerCurrentBal(double customerCurrentBal) {
+	public void setCustomerCurrentBal(int customerCurrentBal) {
 		this.customerCurrentBal = customerCurrentBal;
 	}
 	public Address getAddress() {

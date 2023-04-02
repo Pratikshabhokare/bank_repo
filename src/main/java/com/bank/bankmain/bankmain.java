@@ -2,8 +2,10 @@ package com.bank.bankmain;
 
 import com.bank.bankimplementation.Addressimpl;
 import com.bank.bankimplementation.Bankimpl;
+import com.bank.bankimplementation.Customerimpl;
 import com.bank.pojo.Address;
 import com.bank.pojo.Bank;
+import com.bank.pojo.Customer;
 
 public class bankmain {
 	public static void main(String args[]) {
@@ -52,8 +54,22 @@ public class bankmain {
 		Bankimpl bankimpl=new Bankimpl();
 		//bankimpl.getBankList();
 		//bankimpl.isBankExist(bank1);
-		bankimpl.saveBank(bank1);
-		 
+		//bankimpl.saveBank(bank1);
+		
+		Customer customer = new Customer();
+		customer.setCustomerId(4);
+//		customer.setBankId(9);
+//		customer.setAddressId(23);
+//		customer.setCustomerFirstName("Saksh");
+//		customer.setCustomerLastName("Meshr");
+//		customer.setAccountNumber(501245331);
+		customer.setCustomerCurrentBal(47555);
+//		customer.setMobileNumber(608976547);
+//		customer.setActive(true);
+//		customer.setIsEnable(1);
+//		customer.setAddress(address);
+		Customerimpl Impl = new Customerimpl();
+	     Impl.getCustomerCurrentBal(customer);
 	}
 
 }

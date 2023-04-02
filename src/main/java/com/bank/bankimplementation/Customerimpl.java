@@ -50,7 +50,7 @@ public class Customerimpl implements CustomerInter {
 
 				customer.setAccountNumber(rs.getInt("account_number"));
 
-				customer.setCustomerCurrentBal(rs.getDouble("current_balance"));
+				customer.setCustomerCurrentBal(rs.getInt("current_balance"));
 
 				customer.setMobileNumber(rs.getInt("mobile_number"));
 
@@ -223,9 +223,8 @@ public class Customerimpl implements CustomerInter {
 				preset.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
-			}
 		}
-
+		}
 	}
 
 	@Override
@@ -234,4 +233,27 @@ public class Customerimpl implements CustomerInter {
 		return false;
 	}
 
+	@Override
+	public void getCustomerCurrentBal(Customer cust) {
+		Connection conn = null;
+		PreparedStatement preset = null;
+		int result = 0;
+		String sql = "select current_balance from customer where id=? group by current_balance";
+		int pos = 0;
+		ResultSet rs = null;
+		try {
+
+			conn = DBConnection.getConnection();
+			preset = conn.prepareStatement(sql, preset.RETURN_GENERATED_KEYS);
+			preset.setInt(++pos, cust.getCustomerId());
+			//preset.setInt(++pos, cust.getCustomerCurrentBal());
+			rs = preset.executeQuery();
+			if (rs.next()) {
+				System.out.println(cust.getCustomerId()+ " customer current balance is " + cust.getCustomerCurrentBal());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+	}
 }
