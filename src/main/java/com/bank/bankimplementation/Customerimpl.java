@@ -238,7 +238,7 @@ public class Customerimpl implements CustomerInter {
 		Connection conn = null;
 		PreparedStatement preset = null;
 		int result = 0;
-		String sql = "select current_balance from customer where id=? group by current_balance";
+		String sql = "select current_balance from customer where id=?";
 		int pos = 0;
 		ResultSet rs = null;
 		try {
