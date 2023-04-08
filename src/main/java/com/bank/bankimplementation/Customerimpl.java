@@ -234,19 +234,6 @@ public class Customerimpl implements CustomerInter {
 		return false;
 	}
 
-	@Override
-	public void depositeAmount(double amount) {
-		Connection conn = null;
-		PreparedStatement preset = null;
-		int deposit = 0;
-		String sql = "";
-
-	}
-
-	@Override
-	public void customerCurrentBalance(Customer customer) {
-
-	}
 
 	@Override
 	public double getCustomerBal(int id) {
