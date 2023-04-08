@@ -60,13 +60,14 @@ public class Customerimpl implements CustomerInter {
 
 				customerList.add(customer);
 				for (Customer cust : customerList) {
+					if (cust.getCustomerId() == 13) {
 
-					System.out.println("Customer list is" + cust);
-					break;
+						System.out.println("Customer list is" + cust);
+						break;
+					}
+
 				}
-
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -232,6 +233,191 @@ public class Customerimpl implements CustomerInter {
 	public boolean disableCustomer(int disable, int id) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public double getCustomerBal(int id) {
+		Connection conn = null;
+		PreparedStatement prepare = null;
+		String sql = "select * from customer";
+		double customeCurrentalance = 0;
+		List<Customer> getCustomerList = null;
+		ResultSet rs = null;
+		Customer customer = null;
+
+		try {
+
+			conn = DBConnection.getConnection();
+			prepare = conn.prepareStatement(sql, prepare.RETURN_GENERATED_KEYS);
+			rs = prepare.executeQuery();
+			customer = new Customer();
+			getCustomerList = new ArrayList();
+
+			while (rs.next()) {
+				customer.setCustomerId(rs.getInt("id"));
+				customer.setCustomerCurrentBal(rs.getDouble("current_balance"));
+				getCustomerList.add(customer);
+
+				for (Customer cust : getCustomerList) {
+
+					if (cust.getCustomerId() == id) {
+
+						System.out.println("Current balance of the customer " + cust);
+						break;
+					}
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return customeCurrentalance;
+	}
+
+	@Override
+	public void deposit(int id, double amount) {
+		Connection conn = null;
+		PreparedStatement prepare = null;
+
+		int pos = 0;
+		String sql = "select * from customer";
+		double customeCurrentalance = 0;
+		List<Customer> getCustomerList = null;
+		ResultSet rs = null;
+		Customer customer = null;
+		int customerId = 0;
+		double customerBal = 0;
+
+		try {
+
+			conn = DBConnection.getConnection();
+			prepare = conn.prepareStatement(sql, prepare.RETURN_GENERATED_KEYS);
+
+			rs = prepare.executeQuery();
+
+			customer = new Customer();
+
+			getCustomerList = new ArrayList();
+
+			while (rs.next()) {
+				customerId = rs.getInt("id");
+				customerBal = rs.getDouble("current_balance") + amount;
+				customer.setCustomerId(customerId);
+				getCustomerList.add(customer);
+
+				for (Customer cust : getCustomerList) {
+
+					if (cust.getCustomerId() == id) {
+
+						System.out.println("Current balance after deposit of the customer " + customerBal);
+						break;
+					}
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void withdraw(int id, double amount) {
+		Connection conn = null;
+		PreparedStatement prepare = null;
+
+		int pos = 0;
+		String sql = "select * from customer";
+		double customeCurrentalance = 0;
+		List<Customer> getCustomerList = null;
+		ResultSet rs = null;
+		Customer customer = null;
+		int customerId = 0;
+		double customerBal = 0;
+
+		try {
+
+			conn = DBConnection.getConnection();
+			prepare = conn.prepareStatement(sql, prepare.RETURN_GENERATED_KEYS);
+
+			rs = prepare.executeQuery();
+
+			customer = new Customer();
+
+			getCustomerList = new ArrayList();
+
+			while (rs.next()) {
+				customerId = rs.getInt("id");
+				customerBal = rs.getDouble("current_balance");
+				customer.setCustomerId(customerId);
+				// customer.setCustomerCurrentBal(customerBal - amount);
+				getCustomerList.add(customer);
+
+				for (Customer cust : getCustomerList) {
+
+					if (cust.getCustomerId() == id) {
+
+						System.out.println("Current balance after deposit of the customer " + customerBal);
+						break;
+					}
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void transfer(int id, double creditAmount, double debitAmount) {
+		Connection conn = null;
+		PreparedStatement prepare = null;
+
+		int pos = 0;
+		String sql = "select * from customer";
+		double customeCurrentalance = 0;
+		List<Customer> getCustomerList = null;
+		ResultSet rs = null;
+		Customer customer = null;
+		int customerId = 0;
+		double creditBal = 0;
+		double debitBal = 0;
+
+		try {
+
+			conn = DBConnection.getConnection();
+			prepare = conn.prepareStatement(sql, prepare.RETURN_GENERATED_KEYS);
+
+			rs = prepare.executeQuery();
+
+			customer = new Customer();
+
+			getCustomerList = new ArrayList();
+
+			while (rs.next()) {
+				customerId = rs.getInt("id");
+				creditBal = rs.getDouble("current_balance") - creditAmount;
+				debitBal = rs.getDouble("current_balance") + debitAmount;
+				customer.setCustomerId(customerId);
+				getCustomerList.add(customer);
+
+				for (Customer cust : getCustomerList) {
+
+					if (cust.getCustomerId() == id) {
+
+						System.out.println("Current balance is " + rs.getDouble("current_balance") + "\n"
+								+ "Current balance after deposit of the customer " + creditBal
+								+ " \n after credit balance is " + debitBal);
+						break;
+					}
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }
