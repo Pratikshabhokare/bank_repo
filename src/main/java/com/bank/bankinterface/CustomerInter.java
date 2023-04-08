@@ -20,5 +20,17 @@ public interface CustomerInter {
 	public void deleteCustomer(int id);
 
 	public boolean disableCustomer(int disable, int id);
+	
+	public void customerCurrentBalance(Customer customer);
+	
+	public void depositeAmount(double amount);
+	
+	public double getCustomerBal(int id);
+	
+	public void deposit(int id,double amount);
+	
+	public void withdraw(int id,double amount);
+	
+	public void transfer(int creditId,int debitId,double amount);
 
 }

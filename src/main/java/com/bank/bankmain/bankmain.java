@@ -2,6 +2,7 @@ package com.bank.bankmain;
 
 import com.bank.bankimplementation.Addressimpl;
 import com.bank.bankimplementation.Bankimpl;
+import com.bank.bankimplementation.Customerimpl;
 import com.bank.pojo.Address;
 import com.bank.pojo.Bank;
 
@@ -52,7 +53,14 @@ public class bankmain {
 		Bankimpl bankimpl=new Bankimpl();
 		//bankimpl.getBankList();
 		//bankimpl.isBankExist(bank1);
-		bankimpl.saveBank(bank1);
+		//bankimpl.saveBank(bank1);
+		
+		Customerimpl custImp=new Customerimpl();
+		//custImp.getCustomerList();
+		custImp.getCustomerBal(5);
+		custImp.deposit(5, 6);
+		custImp.withdraw(5, 6);
+		custImp.transfer(1, 5, 5);
 		 
 	}
 
