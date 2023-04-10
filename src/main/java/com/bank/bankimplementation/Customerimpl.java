@@ -234,7 +234,6 @@ public class Customerimpl implements CustomerInter {
 		return false;
 	}
 
-
 	@Override
 	public double getCustomerBal(int id) {
 		Connection conn = null;
@@ -252,7 +251,7 @@ public class Customerimpl implements CustomerInter {
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
-				customer.setCustomerId(rs.getInt("id"));
+				customer.setCustomerId(rs.getInt("account_number"));
 				customer.setCustomerCurrentBal(rs.getDouble("current_balance"));
 				customerList.add(customer);
 				for (Customer cust : customerList) {
@@ -288,7 +287,7 @@ public class Customerimpl implements CustomerInter {
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
-				customer.setCustomerId(rs.getInt("id"));
+				customer.setCustomerId(rs.getInt("account_number"));
 				customer.setCustomerCurrentBal(rs.getDouble("current_balance") + amount);
 				customerList.add(customer);
 				for (Customer cust : customerList) {
@@ -323,7 +322,7 @@ public class Customerimpl implements CustomerInter {
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
-				customer.setCustomerId(rs.getInt("id"));
+				customer.setCustomerId(rs.getInt("account_number"));
 				customer.setCustomerCurrentBal(rs.getDouble("current_balance") - amount);
 				customerList.add(customer);
 				for (Customer cust : customerList) {
@@ -358,16 +357,18 @@ public class Customerimpl implements CustomerInter {
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
-				customer.setCustomerId(rs.getInt("id"));
+				customer.setCustomerId(rs.getInt("account_number"));
 				customer.setCustomerCurrentBal(rs.getDouble("current_balance"));
 				customerList.add(customer);
 				if (customer.getCustomerId() == creditId) {
 					creditbal = customer.getCustomerCurrentBal() - amount;
-					System.out.println("Customer having id "+ creditId+" Current balance  Amount is" +customer.getCustomerCurrentBal()+"\nafter credit your curent balance is"+creditbal );
+					System.out.println("Customer having id " + creditId + " Current balance  Amount is"
+							+ customer.getCustomerCurrentBal() + "\nafter credit your curent balance is" + creditbal);
 				}
 				if (customer.getCustomerId() == debitId) {
 					debitbal = customer.getCustomerCurrentBal() + amount;
-					System.out.println("Customer having id "+debitId+" yout current Amount is" + customer.getCustomerCurrentBal()+"\nafter deposit your current balance is "+debitbal);
+					System.out.println("Customer having id " + debitId + " yout current Amount is"
+							+ customer.getCustomerCurrentBal() + "\nafter deposit your current balance is " + debitbal);
 					break;
 				}
 			}

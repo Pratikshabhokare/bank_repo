@@ -57,10 +57,10 @@ public class bankmain {
 		
 		Customerimpl custImp=new Customerimpl();
 		//custImp.getCustomerList();
-		custImp.getCustomerBal(5);
-		custImp.deposit(5, 6);
-		custImp.withdraw(5, 6);
-		custImp.transfer(1, 5, 5);
+		custImp.getCustomerBal(998876);
+		custImp.deposit(998876, 100);
+		custImp.withdraw(998876, 900);
+		custImp.transfer(998876, 775566, 100);
 		 
 	}
 
