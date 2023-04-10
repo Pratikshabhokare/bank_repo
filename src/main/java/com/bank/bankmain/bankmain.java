@@ -56,10 +56,10 @@ public class bankmain {
 
 		Customerimpl custimpl = new Customerimpl();
 		// custimpl.getCustomerList();
-		//custimpl.getCustomerBal(5);
-		//custimpl.deposit(5, 16);
-		//custimpl.withdraw(5, 20);
-		custimpl.transfer(5, 06, 10);
+		// custimpl.getCustomerBal(998876);
+		custimpl.deposit(998876, 100);
+		custimpl.withdraw(998876, 100);
+		custimpl.transfer(998876, 775566, 100);
 
 	}
 

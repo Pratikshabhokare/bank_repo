@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bank.bankinterface.CustomerInter;
-import com.bank.pojo.Bank;
 import com.bank.pojo.Customer;
 
 import connection.DBConnection;
@@ -236,7 +235,7 @@ public class Customerimpl implements CustomerInter {
 	}
 
 	@Override
-	public double getCustomerBal(int id) {
+	public double getCustomerBal(int accountNumber) {
 		Connection conn = null;
 		PreparedStatement prepare = null;
 		String sql = "select * from customer";
@@ -248,21 +247,23 @@ public class Customerimpl implements CustomerInter {
 		try {
 
 			conn = DBConnection.getConnection();
+			conn.setAutoCommit(false);
 			prepare = conn.prepareStatement(sql, prepare.RETURN_GENERATED_KEYS);
 			rs = prepare.executeQuery();
 			customer = new Customer();
 			getCustomerList = new ArrayList();
 
 			while (rs.next()) {
-				customer.setCustomerId(rs.getInt("id"));
+				customer.setAccountNumber(rs.getInt("account_number"));
 				customer.setCustomerCurrentBal(rs.getDouble("current_balance"));
 				getCustomerList.add(customer);
 
 				for (Customer cust : getCustomerList) {
 
-					if (cust.getCustomerId() == id) {
+					if (cust.getAccountNumber() == accountNumber) {
+						customeCurrentalance = rs.getDouble("current_balance");
 
-						System.out.println("Current balance of the customer " + cust);
+						System.out.println("Current balance of the customer " + customeCurrentalance);
 						break;
 					}
 				}
@@ -275,13 +276,10 @@ public class Customerimpl implements CustomerInter {
 	}
 
 	@Override
-	public void deposit(int id, double amount) {
+	public void deposit(int accountNumber, double amount) {
 		Connection conn = null;
 		PreparedStatement prepare = null;
-
-		int pos = 0;
 		String sql = "select * from customer";
-		double customeCurrentalance = 0;
 		List<Customer> getCustomerList = null;
 		ResultSet rs = null;
 		Customer customer = null;
@@ -291,6 +289,7 @@ public class Customerimpl implements CustomerInter {
 		try {
 
 			conn = DBConnection.getConnection();
+			conn.setAutoCommit(false);
 			prepare = conn.prepareStatement(sql, prepare.RETURN_GENERATED_KEYS);
 
 			rs = prepare.executeQuery();
@@ -300,16 +299,18 @@ public class Customerimpl implements CustomerInter {
 			getCustomerList = new ArrayList();
 
 			while (rs.next()) {
-				customerId = rs.getInt("id");
+				customer.setAccountNumber(rs.getInt("account_number"));
 				customerBal = rs.getDouble("current_balance") + amount;
-				customer.setCustomerId(customerId);
+
 				getCustomerList.add(customer);
 
 				for (Customer cust : getCustomerList) {
 
-					if (cust.getCustomerId() == id) {
+					if (cust.getAccountNumber() == accountNumber) {
 
-						System.out.println("Current balance after deposit of the customer " + customerBal);
+						System.out.println("Current balance of the customer having account number :" + accountNumber
+								+ " is " + customerBal);
+						conn.commit();
 						break;
 					}
 				}
@@ -322,22 +323,19 @@ public class Customerimpl implements CustomerInter {
 	}
 
 	@Override
-	public void withdraw(int id, double amount) {
+	public void withdraw(int accountNumber, double amount) {
 		Connection conn = null;
 		PreparedStatement prepare = null;
-
-		int pos = 0;
 		String sql = "select * from customer";
-		double customeCurrentalance = 0;
 		List<Customer> getCustomerList = null;
 		ResultSet rs = null;
 		Customer customer = null;
-		int customerId = 0;
 		double customerBal = 0;
 
 		try {
 
 			conn = DBConnection.getConnection();
+			conn.setAutoCommit(false);
 			prepare = conn.prepareStatement(sql, prepare.RETURN_GENERATED_KEYS);
 
 			rs = prepare.executeQuery();
@@ -347,17 +345,18 @@ public class Customerimpl implements CustomerInter {
 			getCustomerList = new ArrayList();
 
 			while (rs.next()) {
-				customerId = rs.getInt("id");
+				customer.setAccountNumber(rs.getInt("account_number"));
 				customerBal = rs.getDouble("current_balance");
-				customer.setCustomerId(customerId);
 				// customer.setCustomerCurrentBal(customerBal - amount);
 				getCustomerList.add(customer);
 
 				for (Customer cust : getCustomerList) {
 
-					if (cust.getCustomerId() == id) {
+					if (cust.getAccountNumber() == accountNumber) {
 
-						System.out.println("Current balance after deposit of the customer " + customerBal);
+						System.out.println("Current balance of the customer having account number :" + accountNumber
+								+ " is " + customerBal);
+						conn.commit();
 						break;
 					}
 				}
@@ -370,23 +369,20 @@ public class Customerimpl implements CustomerInter {
 	}
 
 	@Override
-	public void transfer(int id, double creditAmount, double debitAmount) {
+	public void transfer(int creditAccountNumber, int debitAccountNumber, double amount) {
 		Connection conn = null;
 		PreparedStatement prepare = null;
-
-		int pos = 0;
 		String sql = "select * from customer";
-		double customeCurrentalance = 0;
 		List<Customer> getCustomerList = null;
 		ResultSet rs = null;
 		Customer customer = null;
-		int customerId = 0;
-		double creditBal = 0;
-		double debitBal = 0;
+		double creditCurrentBal = 0;
+		double debitCurrentBal = 0;
 
 		try {
 
 			conn = DBConnection.getConnection();
+			conn.setAutoCommit(false);
 			prepare = conn.prepareStatement(sql, prepare.RETURN_GENERATED_KEYS);
 
 			rs = prepare.executeQuery();
@@ -396,22 +392,20 @@ public class Customerimpl implements CustomerInter {
 			getCustomerList = new ArrayList();
 
 			while (rs.next()) {
-				customerId = rs.getInt("id");
-				creditBal = rs.getDouble("current_balance") - creditAmount;
-				debitBal = rs.getDouble("current_balance") + debitAmount;
-				customer.setCustomerId(customerId);
+				customer.setAccountNumber(rs.getInt("account_number"));
+				creditCurrentBal = rs.getDouble("current_balance") - amount;
+				debitCurrentBal = rs.getDouble("current_balance") + amount;
 				getCustomerList.add(customer);
 
-				for (Customer cust : getCustomerList) {
+				if (customer.getAccountNumber() == creditAccountNumber) {
 
-					if (cust.getCustomerId() == id) {
-
-						System.out.println("Current balance is " + rs.getDouble("current_balance") + "\n"
-								+ "Current balance after deposit of the customer " + creditBal
-								+ " \n after credit balance is " + debitBal);
-						break;
-					}
+					System.out.println(amount + " is credit from account :" + creditAccountNumber+" and current balance is "+creditCurrentBal);
 				}
+				if (customer.getAccountNumber() == debitAccountNumber) {
+
+					System.out.println(amount + " is debit to account :" + debitAccountNumber+" and current balance is "+debitCurrentBal);
+				}
+				conn.commit();
 			}
 
 		} catch (Exception e) {

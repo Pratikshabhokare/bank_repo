@@ -21,12 +21,12 @@ public interface CustomerInter {
 
 	public boolean disableCustomer(int disable, int id);
 	
-	public double getCustomerBal(int id);
+	public double getCustomerBal(int accountNumber);
 	
 	public void deposit(int id,double amount);
 	
 	public void withdraw(int id,double amount);
 	
-	public void transfer(int id,double creditAmount,double debitAmount);
+	public void transfer(int debitId,int  creditId, double amount);
 
 }
