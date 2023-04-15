@@ -6,7 +6,7 @@ import com.bank.pojo.Bank;
 import com.bank.pojo.Customer;
 
 public interface CustomerInter {
-	
+
 	public List<Customer> getCustomerList();
 
 	public boolean isCustomerExist(Customer customer);
@@ -20,5 +20,13 @@ public interface CustomerInter {
 	public void deleteCustomer(int id);
 
 	public boolean disableCustomer(int disable, int id);
+
+	public double getCustomerCurrentBalance(int accountNumber);
+
+	public void depositAmount(int account_number, double amount);
+
+	public void withdrawAmount(int account_number, double amount);
+
+	public void transferAmount(int debter_account_number, int crediteraccount_number, double amount);
 
 }

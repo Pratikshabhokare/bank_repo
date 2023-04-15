@@ -13,7 +13,7 @@ public class DBConnection {
 
               private static final String userName = "root";
 
-              private static final String password = "root123";
+              private static final String password = "Tejask21@";
 
  
 
@@ -29,7 +29,7 @@ public class DBConnection {
 
                                          conn = DriverManager.getConnection(url, userName, password);
 
-                                         System.out.println("Connection success..");
+                                        // System.out.println("Connection success..");
 
  
 
